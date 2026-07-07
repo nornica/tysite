@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Place Your Order</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.2);
+}
+
+h1{
+text-align:center;
+color:#003366;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+}
+
+input,select,textarea{
+width:100%;
+padding:10px;
+margin-top:5px;
+border:1px solid #ccc;
+border-radius:5px;
+box-sizing:border-box;
+}
+
+button{
+margin-top:20px;
+width:100%;
+padding:15px;
+background:#28a745;
+color:#fff;
+border:none;
+border-radius:5px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#218838;
+}
+
+#price{
+font-size:20px;
+font-weight:bold;
+color:#0055aa;
+margin-top:15px;
+text-align:center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Academic Order Form</h1>
+
+<form id="orderForm">
+
+<label>Full Name</label>
+<input type="text" id="name" required>
+
+<label>Email</label>
+<input type="email" id="email" required>
+
+<label>Phone / WhatsApp</label>
+<input type="text" id="phone" required>
+
+<label>Paper Title</label>
+<input type="text" id="title" required>
+
+<label>Subject</label>
+<input type="text" id="subject" required>
+
+<label>Academic Level</label>
+<select id="level">
+<option>High School</option>
+<option>College</option>
+<option>Undergraduate</option>
+<option>Masters</option>
+<option>PhD</option>
+</select>
+
+<label>Number of Pages</label>
+<input type="number" id="pages" value="1" min="1">
+
+<label>Deadline</label>
+<input type="date" id="deadline">
+
+<label>Instructions</label>
+<textarea id="instructions" rows="5"></textarea>
+
+<label>Upload Files</label>
+<input type="file" id="file">
+
+<div id="price">Total Price: $10</div>
+
+<button type="submit">Submit Order</button>
+
+</form>
+
+</div>
+
+<script>
+const pages=document.getElementById("pages");
+const price=document.getElementById("price");
+
+pages.addEventListener("input",()=>{
+let total=pages.value*10;
+price.innerHTML="Total Price: $"+total;
+});
+
+document.getElementById("orderForm").addEventListener("submit",function(e){
+e.preventDefault();
+alert("Order received. Firebase will be connected next.");
+});
+</script>
+
+</body>
+</html>
