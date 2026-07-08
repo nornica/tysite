@@ -135,6 +135,28 @@ document.getElementById("orderForm").addEventListener("submit",function(e){
 e.preventDefault();
 alert("Order received.");
 });
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDTPYP38a5uq50DojYvHxQ3CDomuMs1qwA",
+    authDomain: "writing-3d2a0.firebaseapp.com",
+    projectId: "writing-3d2a0",
+    storageBucket: "writing-3d2a0.firebasestorage.app",
+    messagingSenderId: "785063164469",
+    appId: "1:785063164469:web:d418680eec729e30c10f7c",
+    measurementId: "G-6SBBM1Q0D8"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 </script>
 
 </body>
