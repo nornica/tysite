@@ -152,6 +152,84 @@ text-align:center;
 
 <label>Upload Files</label>
 <input type="file" id="file">
+ <label for="country">Country</label>
+
+<select id="country" name="country" required>
+    <option value="">-- Select Your Country --</option>
+    <option value="Australia" data-code="+61">🇦🇺 Australia</option>
+    <option value="Bangladesh" data-code="+880">🇧🇩 Bangladesh</option>
+    <option value="Botswana" data-code="+267">🇧🇼 Botswana</option>
+    <option value="Canada" data-code="+1">🇨🇦 Canada</option>
+    <option value="Ethiopia" data-code="+251">🇪🇹 Ethiopia</option>
+    <option value="France" data-code="+33">🇫🇷 France</option>
+    <option value="Germany" data-code="+49">🇩🇪 Germany</option>
+    <option value="Ghana" data-code="+233">🇬🇭 Ghana</option>
+    <option value="India" data-code="+91">🇮🇳 India</option>
+    <option value="Ireland" data-code="+353">🇮🇪 Ireland</option>
+    <option value="Kenya" data-code="+254">🇰🇪 Kenya</option>
+    <option value="Malawi" data-code="+265">🇲🇼 Malawi</option>
+    <option value="Mozambique" data-code="+258">🇲🇿 Mozambique</option>
+    <option value="Namibia" data-code="+264">🇳🇦 Namibia</option>
+    <option value="Netherlands" data-code="+31">🇳🇱 Netherlands</option>
+    <option value="New Zealand" data-code="+64">🇳🇿 New Zealand</option>
+    <option value="Nigeria" data-code="+234">🇳🇬 Nigeria</option>
+    <option value="Pakistan" data-code="+92">🇵🇰 Pakistan</option>
+    <option value="Philippines" data-code="+63">🇵🇭 Philippines</option>
+    <option value="Rwanda" data-code="+250">🇷🇼 Rwanda</option>
+    <option value="South Africa" data-code="+27">🇿🇦 South Africa</option>
+    <option value="Tanzania" data-code="+255">🇹🇿 Tanzania</option>
+    <option value="Uganda" data-code="+256">🇺🇬 Uganda</option>
+    <option value="United Arab Emirates" data-code="+971">🇦🇪 United Arab Emirates</option>
+    <option value="United Kingdom" data-code="+44">🇬🇧 United Kingdom</option>
+    <option value="United States" data-code="+1">🇺🇸 United States</option>
+    <option value="Zambia" data-code="+260">🇿🇲 Zambia</option>
+    <option value="Zimbabwe" data-code="+263">🇿🇼 Zimbabwe</option>
+    <option value="Other" data-code="">🌍 Other</option>
+</select>
+
+<br><br>
+
+<label for="phone">Phone Number</label>
+
+<div style="display:flex; gap:8px; max-width:500px;">
+
+    <!-- Automatically changing country code -->
+    <input
+        type="text"
+        id="countryCode"
+        name="countryCode"
+        value=""
+        readonly
+        style="width:80px;"
+        placeholder="+Code"
+    >
+
+    <!-- Phone number -->
+    <input
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="Enter phone number"
+        required
+        style="flex:1;"
+    >
+
+</div>
+
+<script>
+const country = document.getElementById("country");
+const countryCode = document.getElementById("countryCode");
+
+country.addEventListener("change", function () {
+
+    const selectedOption = this.options[this.selectedIndex];
+
+    const code = selectedOption.getAttribute("data-code");
+
+    countryCode.value = code || "";
+
+});
+</script>
 
 <div id="price">Total Price: $5</div>
  <label>Payment Method</label>
