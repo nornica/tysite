@@ -237,8 +237,16 @@ country.addEventListener("change", function () {
  <option value="paypal">PayPal</option>
     <option value="mpesa">M-Pesa</option>
     <option value="card">Credit/Debit Card</option>
-    
-</select> 
+
+ <label for="paymentMethod">Payment Method</label>
+
+<select id="paymentMethod" name="paymentMethod" required onchange="showPaymentDetails()">
+    <option value="">Select Payment Method</option>
+    <option value="paypal">PayPal</option>
+    <option value="mpesa">M-Pesa</option>
+    <option value="card">Credit/Debit Card</option>
+</select>
+
 <!-- Payment Instructions -->
 <div id="paymentDetails" style="
     margin-top:15px;
@@ -260,14 +268,14 @@ function showPaymentDetails() {
         details.style.display = "block";
         text.innerHTML =
             "<strong>PayPal Payment:</strong><br>" +
-            "Make Payment to: <strong>nornica521@gmail.com</strong>";
+            "Send PayPal funds to: <strong>nornica521@gmail.com</strong>";
     }
 
     else if (method === "mpesa") {
         details.style.display = "block";
         text.innerHTML =
             "<strong>M-Pesa Payment:</strong><br>" +
-            Make Payment to: <strong>0706986818</strong>";
+            "Send M-Pesa funds to: <strong>0706986818</strong>";
     }
 
     else if (method === "card") {
