@@ -239,7 +239,51 @@ country.addEventListener("change", function () {
     <option value="card">Credit/Debit Card</option>
     
 </select> 
+<!-- Payment Instructions -->
+<div id="paymentDetails" style="
+    margin-top:15px;
+    padding:15px;
+    background:#f5f5f5;
+    border-radius:8px;
+    display:none;
+">
+    <p id="paymentText"></p>
+</div>
 
+<script>
+function showPaymentDetails() {
+    const method = document.getElementById("paymentMethod").value;
+    const details = document.getElementById("paymentDetails");
+    const text = document.getElementById("paymentText");
+
+    if (method === "paypal") {
+        details.style.display = "block";
+        text.innerHTML =
+            "<strong>PayPal Payment:</strong><br>" +
+            "Make Payment to: <strong>nornica521@gmail.com</strong>";
+    }
+
+    else if (method === "mpesa") {
+        details.style.display = "block";
+        text.innerHTML =
+            "<strong>M-Pesa Payment:</strong><br>" +
+            Make Payment to: <strong>0706986818</strong>";
+    }
+
+    else if (method === "card") {
+        details.style.display = "block";
+        text.innerHTML =
+            "<strong>Credit/Debit Card:</strong><br>" +
+            "Pay securely using your credit or debit card.<br>" +
+            "Bank/Card payment details will be provided after your order is submitted.";
+    }
+
+    else {
+        details.style.display = "none";
+        text.innerHTML = "";
+    }
+}
+</script>
 <button type="submit">Submit Order</button>
 <div class="contact-info">
 <h3>Contact Information</h3>
