@@ -94,12 +94,12 @@ text-align:center;
 
 <label>Academic Level</label>
 <select id="level">
-<option>High School</option>
-<option>College</option>
-<option>Undergraduate</option>
-<option>Masters</option>
-<option>PhD</option>
-<option>None</option>
+    <option value="High School">High School</option>
+    <option value="College">College</option>
+    <option value="Undergraduate">Undergraduate</option>
+    <option value="Masters">Masters</option>
+    <option value="PhD">PhD</option>
+    <option value="None">None</option>
 </select>
 
 <label>Number of Pages</label>
@@ -107,6 +107,92 @@ text-align:center;
 
 <label>Deadline</label>
 <input type="date" id="deadline">
+
+<label>Total Price</label>
+<input type="text" id="price" value="KSh 0" readonly>
+
+<script>
+const level = document.getElementById("level");
+const pages = document.getElementById("pages");
+const deadline = document.getElementById("deadline");
+const price = document.getElementById("price");
+
+// Price per page according to academic level
+const levelPrices = {
+    "High School": 300,
+    "College": 400,
+    "Undergraduate": 500,
+    "Masters": 700,
+    "PhD": 1000,
+    "None": 300
+};
+
+function calculatePrice() {
+
+    const selectedLevel = level.value;
+    const numberOfPages = parseInt(pages.value) || 1;
+
+    let pricePerPage = levelPrices[selectedLevel];
+
+    // Deadline surcharge
+    let deadlineMultiplier = 1;
+
+    if (deadline.value) {
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const dueDate = new Date(deadline.value);
+        dueDate.setHours(0, 0, 0, 0);
+
+        const difference =
+            Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
+
+        // Same day
+        if (difference <= 0) {
+            deadlineMultiplier = 2.0;
+        }
+
+        // 1 day
+        else if (difference === 1) {
+            deadlineMultiplier = 1.8;
+        }
+
+        // 2 days
+        else if (difference === 2) {
+            deadlineMultiplier = 1.6;
+        }
+
+        // 3 days
+        else if (difference === 3) {
+            deadlineMultiplier = 1.4;
+        }
+
+        // 4–7 days
+        else if (difference <= 7) {
+            deadlineMultiplier = 1.2;
+        }
+
+        // More than 7 days
+        else {
+            deadlineMultiplier = 1.0;
+        }
+    }
+
+    const total =
+        pricePerPage * numberOfPages * deadlineMultiplier;
+
+    price.value = "KSh " + Math.round(total).toLocaleString();
+}
+
+// Recalculate whenever something changes
+level.addEventListener("change", calculatePrice);
+pages.addEventListener("input", calculatePrice);
+deadline.addEventListener("change", calculatePrice);
+
+// Initial calculation
+calculatePrice();
+</script>
 
 <label>Instructions</label>
 <textarea id="instructions" rows="5"></textarea>
